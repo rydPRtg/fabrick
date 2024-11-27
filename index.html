@@ -5,45 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="slot/slot.css">
 </head>
 <body>
-    <div class="nickname" id="nickname">Nickname</div>
-    <div class="buttons-container">
-        <button class="button" id="button1">1</button>
-        <button class="button" id="button2">2</button>
-        <button class="button" id="button3">3</button>
-        <button class="button" id="button4">4</button>
+    <div class="container">
+        <div class="header">
+            <div class="nickname">Никнейм: Игрок</div>
+            <div class="balance">Баланс: 1000</div>
+        </div>
+        <button class="exit-button" id="exitButton1">Выйти</button>
+        <button class="exit-button" id="exitButton2">Выйти</button>
+        <button class="exit-button" id="exitButton3">Выйти</button>
+        <button class="exit-button" id="exitButton4">Выйти</button>
     </div>
-
+    <script src="slot/slot.js"></script>
     <script>
-        // Получаем данные из Telegram WebApp
-        const tg = window.Telegram.WebApp;
-        const user = tg.initDataUnsafe?.user;
-
-        // Устанавливаем никнейм
-        const nicknameElement = document.getElementById('nickname');
-        if (user && user.username) {
-            nicknameElement.textContent = user.username;
-        } else {
-            nicknameElement.textContent = "Guest";
-        }
-
-        // Обработчик кнопки 1
-        document.getElementById('button1').addEventListener('click', function() {
-            window.location.href = 'slot/slot.html';  // Перенаправляем на slot.html
+        // Реализация кнопок выхода
+        document.getElementById("exitButton1").addEventListener("click", () => {
+            window.location.href = "slot/slot.html"; // Возврат на главную страницу
         });
 
-        // То же самое для других кнопок
-        document.getElementById('button2').addEventListener('click', function() {
-            window.location.href = 'slot/slot.html';  // Перенаправляем на slot.html
+        document.getElementById("exitButton2").addEventListener("click", () => {
+            window.location.href = "slot/slot.html"; // Возврат на главную страницу
         });
 
-        document.getElementById('button3').addEventListener('click', function() {
-            window.location.href = 'slot/slot.html';  // Перенаправляем на slot.html
+        document.getElementById("exitButton3").addEventListener("click", () => {
+            window.location.href = "slot/slot.html"; // Возврат на главную страницу
         });
 
-        document.getElementById('button4').addEventListener('click', function() {
-            window.location.href = 'slot/slot.html';  // Перенаправляем на slot.html
+        document.getElementById("exitButton4").addEventListener("click", () => {
+            window.location.href = "slot/slot.html"; // Возврат на главную страницу
         });
     </script>
 </body>
