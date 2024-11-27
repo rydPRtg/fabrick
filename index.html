@@ -3,16 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Game</title>
+    <link rel="stylesheet" href="style.css"> <!-- Подключаем общий стиль -->
 </head>
 <body>
-    <div class="container">
-        <button id="btn1">1</button>
-        <button id="btn2">2</button>
-        <button id="btn3">3</button>
-        <button id="btn4">4</button>
+    <div class="nickname" id="nickname">Nickname</div>
+    <div class="buttons-container">
+        <button class="button" id="button1">1</button>
+        <button class="button" id="button2">2</button>
+        <button class="button" id="button3">3</button>
+        <button class="button" id="button4">4</button>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        // Получаем данные из Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        const user = tg.initDataUnsafe?.user;
+
+        // Устанавливаем никнейм
+        const nicknameElement = document.getElementById('nickname');
+        if (user && user.username) {
+            nicknameElement.textContent = user.username;
+        } else {
+            nicknameElement.textContent = "Guest";
+        }
+
+        // Открываем WebApp при нажатии кнопки
+        document.getElementById('button1').addEventListener('click', () => {
+            window.location.href = 'slot/slot.html'; // Открываем файл slot.html
+        });
+
+        // Заглушки для остальных кнопок
+        document.getElementById('button2').addEventListener('click', () => {
+            alert('Функция пока недоступна');
+        });
+
+        document.getElementById('button3').addEventListener('click', () => {
+            alert('Функция пока недоступна');
+        });
+
+        document.getElementById('button4').addEventListener('click', () => {
+            alert('Функция пока недоступна');
+        });
+    </script>
 </body>
 </html>
