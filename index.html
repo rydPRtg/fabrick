@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
-    <link rel="stylesheet" href="style.css"> <!-- Подключаем общий стиль -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="nickname" id="nickname">Nickname</div>
@@ -28,22 +28,22 @@
             nicknameElement.textContent = "Guest";
         }
 
-        // Открываем WebApp при нажатии кнопки
-        document.getElementById('button1').addEventListener('click', () => {
-            window.location.href = 'slot/slot.html'; // Открываем файл slot.html
+        // Обработчик кнопки 1
+        document.getElementById('button1').addEventListener('click', function() {
+            window.location.href = 'slot/slot.html';  // Перенаправляем на slot.html
         });
 
-        // Заглушки для остальных кнопок
-        document.getElementById('button2').addEventListener('click', () => {
-            alert('Функция пока недоступна');
+        // То же самое для других кнопок
+        document.getElementById('button2').addEventListener('click', function() {
+            window.location.href = 'slot/slot.html';  // Перенаправляем на slot.html
         });
 
-        document.getElementById('button3').addEventListener('click', () => {
-            alert('Функция пока недоступна');
+        document.getElementById('button3').addEventListener('click', function() {
+            window.location.href = 'slot/slot.html';  // Перенаправляем на slot.html
         });
 
-        document.getElementById('button4').addEventListener('click', () => {
-            alert('Функция пока недоступна');
+        document.getElementById('button4').addEventListener('click', function() {
+            window.location.href = 'slot/slot.html';  // Перенаправляем на slot.html
         });
     </script>
 </body>
