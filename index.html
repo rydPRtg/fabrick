@@ -9,23 +9,25 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="nickname">Никнейм: Игрок</div>
-            <div class="balance">Баланс: 1000</div>
+        <div class="exit-button-container" id="exitButton1Container">
+            <img src="images/exit.png" alt="Выйти" class="exit-button-image">
+            <div class="exit-button-label">Слот-барабан</div>
         </div>
-        <button class="exit-button" id="exitButton1">Выйти</button>
-        <button class="exit-button" id="exitButton2">Выйти</button>
+        <div class="exit-button-container" id="exitButton2Container">
+            <img src="images/exit2.png" alt="Выйти" class="exit-button-image">
+            <div class="exit-button-label">Рулетка</div>
+        </div>
         <button class="exit-button" id="exitButton3">Выйти</button>
         <button class="exit-button" id="exitButton4">Выйти</button>
     </div>
     <script src="slot/slot.js"></script>
     <script>
         // Реализация кнопок выхода
-        document.getElementById("exitButton1").addEventListener("click", () => {
+        document.getElementById("exitButton1Container").addEventListener("click", () => {
             window.location.href = "slot/slot.html"; // Возврат на главную страницу
         });
 
-        document.getElementById("exitButton2").addEventListener("click", () => {
+        document.getElementById("exitButton2Container").addEventListener("click", () => {
             window.location.href = "slot/slot.html"; // Возврат на главную страницу
         });
 
