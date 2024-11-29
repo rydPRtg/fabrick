@@ -1,0 +1,180 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #1b1b1b;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.roulette-container {
+    margin-top: 50px;
+}
+
+.wheel-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.wheel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 5px solid white;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        #00b400 0deg 10deg,
+        #d32f2f 10deg 30deg,
+        #212121 30deg 50deg,
+        #d32f2f 50deg 70deg,
+        #212121 70deg 90deg,
+        #d32f2f 90deg 110deg,
+        #212121 110deg 130deg,
+        #d32f2f 130deg 150deg,
+        #212121 150deg 170deg,
+        #d32f2f 170deg 190deg,
+        #212121 190deg 210deg,
+        #d32f2f 210deg 230deg,
+        #212121 230deg 250deg,
+        #d32f2f 250deg 270deg,
+        #212121 270deg 290deg,
+        #d32f2f 290deg 310deg,
+        #212121 310deg 330deg,
+        #d32f2f 330deg 350deg,
+        #212121 350deg 360deg
+    );
+    overflow: hidden;
+    transform: rotate(0deg);
+    transition: transform 5s ease-out;
+}
+
+.numbers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    transform-origin: center;
+}
+
+.number.red {
+    background-color: #d32f2f;
+}
+
+.number.black {
+    background-color: #212121;
+}
+
+.number.green {
+    background-color: #00b400;
+}
+
+.number:nth-child(1) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(2) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(3) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(4) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(5) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(6) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(7) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(8) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(9) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(10) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(11) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(12) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(13) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(14) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(15) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(16) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(17) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(18) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(19) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(20) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(21) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(22) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(23) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(24) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(25) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(26) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(27) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(28) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(29) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(30) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(31) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(32) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(33) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(34) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(35) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(36) { transform: rotate(calc(9.23deg * var(--i))); }
+.number:nth-child(37) { transform: rotate(calc(9.23deg * var(--i))); }
+
+.ball {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ball-spin 0s linear;
+}
+
+.controls {
+    margin: 20px 0;
+}
+
+#betAmount, #betNumber, #betType, #spinButton {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#message {
+    color: yellow;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ball-spin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(-1440deg);
+    }
+}
