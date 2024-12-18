@@ -1,20 +1,19 @@
 import asyncio
-from aiogram import Bot, Dispatcher, Router, types
+from aiogram import Bot, Dispatcher, types
 from aiogram.types import WebAppInfo, InlineKeyboardMarkup, InlineKeyboardButton
-from aiogram.filters import Command
+from aiogram.dispatcher.filters import CommandStart, Command
 from config import BOT_TOKEN, WEBAPP_URL
 from database.db import get_user, create_user, update_balance
 
-# Инициализация бота, диспетчера и роутера
+# Инициализация бота и диспетчера
 bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher()
-router = Router()
+dp = Dispatcher(bot)
 
 # Регистрация обработчика команды /start
-@router.message(Command("start"))
+@dp.message_handler(CommandStart())
 async def start_command(message: types.Message):
     telegram_id = message.from_user.id
-    username = message.from_user.username
+    username = message.from_user.username or message.from_user.full_name
 
     user = get_user(telegram_id)
     if not user:
@@ -46,7 +45,7 @@ async def start_command(message: types.Message):
     )
 
 # Пример команды для обновления баланса
-@router.message(Command("update_balance"))
+@dp.message_handler(Command("update_balance"))
 async def update_balance_command(message: types.Message):
     telegram_id = message.from_user.id
     update_balance(telegram_id, 100)  # Пример увеличения баланса на 100
@@ -55,10 +54,8 @@ async def update_balance_command(message: types.Message):
 
 # Главная асинхронная функция
 async def main():
-    # Регистрация роутера в диспетчере
-    dp.include_router(router)
     print("Бот запущен")
-    await dp.start_polling(bot)
+    await dp.start_polling()
 
 if __name__ == "__main__":
     asyncio.run(main())
