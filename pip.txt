@@ -1,1 +1,1 @@
-pip install pymongo aiogram
+pip install firebase-admin

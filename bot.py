@@ -3,7 +3,7 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.types import WebAppInfo, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.dispatcher.filters import CommandStart, Command
 from config import BOT_TOKEN, WEBAPP_URL
-from database.db import get_user, create_user, update_balance
+from database.firestore_db import get_user, create_user, update_balance
 
 # Инициализация бота и диспетчера
 bot = Bot(token=BOT_TOKEN)
