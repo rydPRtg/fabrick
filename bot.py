@@ -3,6 +3,7 @@ from aiogram import Bot, Dispatcher, Router, types
 from aiogram.types import WebAppInfo, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.filters import Command
 from config import BOT_TOKEN, WEBAPP_URL
+from database.db import get_user, create_user, update_balance
 
 # Инициализация бота, диспетчера и роутера
 bot = Bot(token=BOT_TOKEN)
@@ -12,6 +13,13 @@ router = Router()
 # Регистрация обработчика команды /start
 @router.message(Command("start"))
 async def start_command(message: types.Message):
+    telegram_id = message.from_user.id
+    username = message.from_user.username
+
+    user = get_user(telegram_id)
+    if not user:
+        user = create_user(telegram_id, username)
+
     # Создаем обычную клавиатуру с кнопкой WebApp
     reply_keyboard = types.ReplyKeyboardMarkup(
         keyboard=[
@@ -29,13 +37,21 @@ async def start_command(message: types.Message):
 
     # Отправляем сообщение с Reply-клавиатурой и Inline-кнопкой
     await message.answer(
-        "Нажмите кнопку ниже, чтобы начать игру!",
+        f"Привет, {username}! Ваш баланс: {user['balance']}",
         reply_markup=reply_keyboard
     )
     await message.answer(
         "Или вы можете нажать эту кнопку:",
         reply_markup=inline_keyboard
     )
+
+# Пример команды для обновления баланса
+@router.message(Command("update_balance"))
+async def update_balance_command(message: types.Message):
+    telegram_id = message.from_user.id
+    update_balance(telegram_id, 100)  # Пример увеличения баланса на 100
+    user = get_user(telegram_id)
+    await message.answer(f"Ваш новый баланс: {user['balance']}")
 
 # Главная асинхронная функция
 async def main():

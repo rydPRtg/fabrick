@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="slot/slot.css">
 </head>
 <body>
+    <div class="user-info">
+        <div id="username"></div>
+        <div id="balance"></div>
+    </div>
     <div class="container">
         <div class="exit-button-container" id="exitButton1Container">
             <img src="images/exit.png" alt="Выйти" class="exit-button-image">
@@ -41,6 +45,15 @@
         document.getElementById("exitButton4").addEventListener("click", () => {
             window.location.href = "slot/slot.html"; // Возврат на главную страницу
         });
+
+        // Функция для отображения информации о пользователе
+        function displayUserInfo(username, balance) {
+            document.getElementById('username').innerText = `Никнейм: ${username}`;
+            document.getElementById('balance').innerText = `Баланс: ${balance}`;
+        }
+
+        // Пример вызова функции (замените на реальные данные)
+        displayUserInfo('exampleUser', 1000);
     </script>
 </body>
 </html>
