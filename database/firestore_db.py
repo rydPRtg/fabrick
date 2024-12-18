@@ -2,7 +2,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 
 # Инициализация Firebase
-cred = credentials.Certificate('path/to/your/serviceAccountKey.json')
+cred = credentials.Certificate('database/casipr-82b1d-firebase-adminsdk-ev2t8-7c62257106.json')  # Обновите путь к вашему JSON-файлу
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
