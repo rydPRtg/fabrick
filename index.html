@@ -29,6 +29,25 @@
     </div>
     <script src="slot/slot.js"></script>
     <script>
+        // Функция для получения параметров из URL
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                username: params.get('username'),
+                balance: params.get('balance')
+            };
+        }
+
+        // Функция для отображения информации о пользователе
+        function displayUserInfo(username, balance) {
+            document.getElementById('username').innerText = `Никнейм: ${username}`;
+            document.getElementById('balance').innerText = `Баланс: ${balance}`;
+        }
+
+        // Получаем параметры из URL и отображаем информацию о пользователе
+        const queryParams = getQueryParams();
+        displayUserInfo(queryParams.username, queryParams.balance);
+
         // Реализация кнопок выхода
         document.getElementById("exitButton1Container").addEventListener("click", () => {
             window.location.href = "slot/slot.html"; // Возврат на главную страницу
@@ -45,15 +64,6 @@
         document.getElementById("exitButton4").addEventListener("click", () => {
             window.location.href = "slot/slot.html"; // Возврат на главную страницу
         });
-
-        // Функция для отображения информации о пользователе
-        function displayUserInfo(username, balance) {
-            document.getElementById('username').innerText = `Никнейм: ${username}`;
-            document.getElementById('balance').innerText = `Баланс: ${balance}`;
-        }
-
-        // Пример вызова функции (замените на реальные данные)
-        displayUserInfo('exampleUser', 1000);
     </script>
 </body>
 </html>
