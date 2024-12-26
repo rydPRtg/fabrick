@@ -1,6 +1,8 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #2c3e50;
+    background-image: url('images/background.jpg');
+    background-size: cover;
+    background-position: center;
     color: #ecf0f1;
     margin: 0;
     padding: 0;
@@ -14,7 +16,7 @@ body {
 .container {
     text-align: center;
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
 }
 
 .header {
@@ -30,22 +32,32 @@ body {
 
 .reels {
     display: flex;
-    justify-content: space-around;
+    gap: 10px; /* Задайте нужное расстояние между барабанами */
     margin: 20px 0;
+    padding-left: 80px; /* Добавьте эту строчку, чтобы подвинуть вправо */
+    padding-right: 50px; /* Добавьте эту строчку, чтобы подвинуть влево */
 }
 
 .reel {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 240px; /* Увеличиваем высоту барабана */
     border: 2px solid #ecf0f1;
-    background-color: #34495e;
+    background-color: rgba(52, 73, 94, 0.5); /* Слегка прозрачный фон */
     border-radius: 10px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     font-size: 2em;
     font-weight: bold;
     color: #1abc9c;
+}
+
+.symbol {
+    height: 80px; /* Высота каждого символа */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .spin-button,
