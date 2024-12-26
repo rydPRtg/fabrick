@@ -4,6 +4,7 @@ from aiogram.types import WebAppInfo, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.dispatcher.filters import CommandStart, Command
 from config import BOT_TOKEN, WEBAPP_URL
 from database.db import SessionLocal, get_user, create_user, update_balance
+from urllib.parse import quote
 
 # Инициализация бота и диспетчера
 bot = Bot(token=BOT_TOKEN)
@@ -21,8 +22,8 @@ async def start_command(message: types.Message):
         user = create_user(session, telegram_id, username)
     session.close()
 
-    # Формируем URL с параметрами
-    webapp_url_with_params = f"{WEBAPP_URL}?username={username}&balance={user.balance}"
+    # Формируем URL с параметрами и экранируем его
+    webapp_url_with_params = f"{WEBAPP_URL}?username={quote(username)}&balance={user.balance}"
 
     # Создаем обычную клавиатуру с кнопкой WebApp
     reply_keyboard = types.ReplyKeyboardMarkup(
