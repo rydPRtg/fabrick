@@ -17,16 +17,23 @@ function spinReels() {
     const results = [];
 
     reels.forEach((reel, index) => {
+        const symbols = reel.querySelectorAll(".symbol");
         let interval = setInterval(() => {
-            const randomSymbol = reelSymbols[Math.floor(Math.random() * reelSymbols.length)];
-            reel.textContent = randomSymbol;
+            symbols.forEach(symbol => {
+                const randomSymbol = reelSymbols[Math.floor(Math.random() * reelSymbols.length)];
+                symbol.textContent = randomSymbol;
+            });
         }, 100); // Скорость вращения
 
         setTimeout(() => {
             clearInterval(interval);
-            const finalSymbol = reelSymbols[Math.floor(Math.random() * reelSymbols.length)];
-            reel.textContent = finalSymbol;
-            results.push(finalSymbol);
+            const finalSymbols = [];
+            symbols.forEach(symbol => {
+                const finalSymbol = reelSymbols[Math.floor(Math.random() * reelSymbols.length)];
+                symbol.textContent = finalSymbol;
+                finalSymbols.push(finalSymbol);
+            });
+            results.push(finalSymbols[1]); // Добавляем средний символ
 
             // Когда все барабаны остановились
             if (results.length === reels.length) {
