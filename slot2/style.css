@@ -1,0 +1,241 @@
+/*
+ * Some general styling
+ */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --item-height: 100px;
+}
+
+body {
+    background-color: #444;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    position: relative;
+    background-image: url('items/background.jpg'); /* Ссылка на ваш фон */
+    background-size: cover;
+    background-position: center;
+}
+
+/*
+ * Style the user info
+ */
+
+.user-info {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.user-info-item {
+    color: white;
+    font-size: 1.2em;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px; /* Adjusted to account for the user-info height */
+}
+
+/*
+ * Style the slot machine box
+ */
+
+#container {
+    background-color: rgba(255, 255, 255, 0.8); /* Сделаем фон полупрозрачным */
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+    border-radius: 10px; /* Добавим скругленные углы */
+}
+
+.window {
+    position: relative;
+    overflow: hidden;
+    height: calc(3 * var(--item-height));
+}
+
+.window::before {
+    content: "";
+    clear: both;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
+}
+
+.window::after {
+    content: "";
+    clear: both;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+}
+
+.window-border {
+    padding: 5px;
+    background-image: linear-gradient(to bottom, #fcf8ad, #f8f3cd, #f9e13d);
+    box-shadow: 0 6px 4px -5px #eca654 inset;
+}
+
+/*
+ * Reels and icon styling
+ */
+
+.icon {
+    width: 80px;
+    height: var(--item-height);
+    display: block;
+    position: relative;
+}
+
+.outer-col {
+    overflow-y: hidden;
+    width: 100px;
+    float: left;
+    background-color: #eee;
+    background-image: linear-gradient(#16013c, #741a5e, #430155, #16013c);
+    height: calc(var(--item-height) * 3);
+}
+
+.outer-spacer {
+    width: 8px;
+    height: 100%;
+    float: left;
+    border-right: 2px solid #f7ce6c38;
+    background-image: linear-gradient(#be4d01, #893802);
+}
+
+.col {
+    padding: 0 10px;
+    will-change: true;
+    transform: translateY(calc(-100% + var(--item-height) * 3));
+}
+
+.col img {
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+    position: relative;
+    z-index: 3;
+}
+
+/* shadow effect behind the items */
+.col .icon::after {
+    content: "";
+    clear: both;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1px;
+    height: 1px;
+    background-color: white;
+    box-shadow: 0 0 35px 30px rgba(12, 0, 14, 0.69);
+    z-index: 2;
+    border-radius: 100%;
+}
+
+/*
+ * Spinning animation
+ */
+
+#container.spinning .outer-col:nth-of-type(2) .col {
+    animation-delay: 0.01s;
+}
+
+#container.spinning .outer-col:nth-of-type(3) .col {
+    animation-delay: 0.02s;
+}
+
+#container.spinning .col {
+    animation-name: scroll;
+    animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(.65, .97, .72, 1);
+}
+
+@keyframes scroll {
+    to {
+        transform: translateY(0);
+    }
+}
+
+/*
+ * Style the controls
+ */
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.bet-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#bet-amount {
+    width: 80px;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.quick-bet-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.quick-bet-buttons button {
+    padding: 5px 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.quick-bet-buttons button:hover {
+    background-color: #f0f0f0;
+}
+
+.start-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.start-button:hover {
+    background-color: #45a049;
+}
