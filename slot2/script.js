@@ -38,6 +38,7 @@ var cols;
 window.addEventListener('DOMContentLoaded', function(event) {
     cols = document.querySelectorAll('.col');
     setInitialItems();
+    fetchUserData(); // Fetch initial user data from the server
 });
 
 function setInitialItems() {
@@ -174,4 +175,22 @@ function updateBalanceOnServer(betAmount) {
     .catch(error => {
         console.error('Error updating balance:', error);
     });
+}
+
+// Функция для получения данных пользователя с сервера
+function fetchUserData() {
+    const telegramId = queryParams.username; // Replace with the actual Telegram ID of the user
+    fetch(`/api/user/${telegramId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.nickname && data.balance) {
+                userBalance = data.balance;
+                displayUserInfo(data.nickname, userBalance);
+            } else {
+                console.error('Invalid data format:', data);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching user data:', error);
+        });
 }
