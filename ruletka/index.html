@@ -1,75 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Казино Рулетка</title>
-    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<title>Javascript Roulette</title>
+	<meta name="title" content="Javascript Roulette">
+	<meta name="description" content="A fully functioning roulette game made using Javascript and CSS">
+	<meta name="author" content="ozboware">
+	<meta property="og:url" content="/">
+	<meta property="og:title" content="Javascript Roulette">
+	<meta property="og:description" content="A fully functioning roulette game made using Javascript and CSS">
+	<link href="./assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-    <div class="roulette-container">
-        <h1>Рулетка Казино</h1>
-        <div class="wheel-container">
-            <div class="wheel">
-                <div class="ball"></div>
-                <div class="numbers">
-                    <!-- Создаём числа на рулетке -->
-                    <span class="number green" style="--i:0;">0</span>
-                    <span class="number black" style="--i:32;">32</span>
-                    <span class="number red" style="--i:15;">15</span>
-                    <span class="number black" style="--i:19;">19</span>
-                    <span class="number red" style="--i:4;">4</span>
-                    <span class="number black" style="--i:21;">21</span>
-                    <span class="number red" style="--i:2;">2</span>
-                    <span class="number black" style="--i:25;">25</span>
-                    <span class="number red" style="--i:17;">17</span>
-                    <span class="number black" style="--i:34;">34</span>
-                    <span class="number red" style="--i:6;">6</span>
-                    <span class="number black" style="--i:27;">27</span>
-                    <span class="number red" style="--i:13;">13</span>
-                    <span class="number black" style="--i:36;">36</span>
-                    <span class="number red" style="--i:11;">11</span>
-                    <span class="number black" style="--i:30;">30</span>
-                    <span class="number red" style="--i:8;">8</span>
-                    <span class="number black" style="--i:23;">23</span>
-                    <span class="number red" style="--i:10;">10</span>
-                    <span class="number black" style="--i:5;">5</span>
-                    <span class="number red" style="--i:24;">24</span>
-                    <span class="number black" style="--i:16;">16</span>
-                    <span class="number red" style="--i:33;">33</span>
-                    <span class="number black" style="--i:1;">1</span>
-                    <span class="number red" style="--i:20;">20</span>
-                    <span class="number black" style="--i:14;">14</span>
-                    <span class="number red" style="--i:31;">31</span>
-                    <span class="number black" style="--i:9;">9</span>
-                    <span class="number red" style="--i:22;">22</span>
-                    <span class="number black" style="--i:18;">18</span>
-                    <span class="number red" style="--i:29;">29</span>
-                    <span class="number black" style="--i:7;">7</span>
-                    <span class="number red" style="--i:28;">28</span>
-                    <span class="number black" style="--i:12;">12</span>
-                    <span class="number red" style="--i:35;">35</span>
-                    <span class="number black" style="--i:3;">3</span>
-                    <span class="number red" style="--i:26;">26</span>
-                </div>
-            </div>
-        </div>
-        <div class="controls">
-            <input type="number" id="betAmount" placeholder="Ставка" min="1">
-            <select id="betType">
-                <option value="red">Красное</option>
-                <option value="black">Черное</option>
-                <option value="odd">Нечетное</option>
-                <option value="even">Четное</option>
-                <option value="number">Число</option>
-            </select>
-            <input type="number" id="betNumber" placeholder="Число (0-36)" min="0" max="36" disabled>
-            <button id="spinButton">Крутить</button>
-        </div>
-        <div class="result">
-            <p id="message"></p>
-        </div>
-    </div>
-    <script src="script.js"></script>
+	<script src="./assets/js/app.js"></script>
 </body>
-</html>

@@ -1,0 +1,20 @@
+<div class='coin-flip'>
+  <!-- The tail starts out hidden; we don't want to wait until CSS rule evaluation to hide this image -->
+  <div id='coin-tails' style='display:none'>
+    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/US_One_Cent_Rev.png/240px-US_One_Cent_Rev.png'>
+  </div>
+  <div id='coin-heads'>
+    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/US_One_Cent_Obv.png/240px-US_One_Cent_Obv.png'>
+  </div>
+</div>
+
+<div id='controls'>
+    Balance <div id='div-balance'></div>
+  <div id='buttons'>
+    <button id='btn-heads' onclick=flip('heads')>Heads</button>
+    <button id='btn-tails' onclick=flip('tails')>Tails</button>
+  </div>
+  <div id='div-result'></div>
+</div>
+
+<div id='div-debuginfo'></div>
