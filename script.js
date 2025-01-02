@@ -19,17 +19,17 @@ displayUserInfo(queryParams.username, queryParams.balance);
 
 // Реализация кнопок выхода
 document.getElementById("exitButton1Container").addEventListener("click", () => {
-    window.location.href = "slot2/index.html"; // Возврат на главную страницу
+    window.location.href = `slot2/index.html?username=${queryParams.username}&balance=${queryParams.balance}`;
 });
 
 document.getElementById("exitButton2Container").addEventListener("click", () => {
-    window.location.href = "ruletka/index.html"; // Возврат на главную страницу
+    window.location.href = `ruletka/index.html?username=${queryParams.username}&balance=${queryParams.balance}`;
 });
 
 document.getElementById("exitButton3Container").addEventListener("click", () => {
-    window.location.href = "aviator/index.html"; // Возврат на главную страницу
+    window.location.href = `aviator/index.html?username=${queryParams.username}&balance=${queryParams.balance}`;
 });
 
 document.getElementById("exitButton4").addEventListener("click", () => {
-    window.location.href = "slot/slot.html"; // Возврат на главную страницу
+    window.location.href = `slot/slot.html?username=${queryParams.username}&balance=${queryParams.balance}`;
 });
