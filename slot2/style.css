@@ -197,6 +197,8 @@ body {
 .bet-controls {
     display: flex;
     align-items: center;
+    width: 100%;
+    justify-content: space-between;
     margin-bottom: 10px;
 }
 
@@ -207,7 +209,6 @@ body {
     border-radius: 5px;
     cursor: pointer;
     background-color: #fff;
-    margin: 0 5px;
 }
 
 .bet-controls button:hover {
@@ -226,6 +227,8 @@ body {
 .quick-bet-buttons {
     display: flex;
     gap: 5px;
+    width: 100%;
+    justify-content: space-around;
     margin-bottom: 10px;
 }
 
@@ -240,6 +243,13 @@ body {
 
 .quick-bet-buttons button:hover {
     background-color: #f0f0f0;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
 }
 
 .start-button {
@@ -264,7 +274,6 @@ body {
     cursor: pointer;
     background-color: #f44336;
     color: white;
-    margin-top: 10px;
 }
 
 .exit-button:hover {
