@@ -7,7 +7,7 @@
 }
 
 :root {
-    --item-height: 100px;
+    --item-height: 60px; /* Уменьшаем высоту иконок */
 }
 
 body {
@@ -105,7 +105,7 @@ body {
  */
 
 .icon {
-    width: 80px;
+    width: 60px; /* Уменьшаем ширину иконок */
     height: var(--item-height);
     display: block;
     position: relative;
@@ -113,7 +113,7 @@ body {
 
 .outer-col {
     overflow-y: hidden;
-    width: 100px;
+    width: 80px; /* Уменьшаем ширину колонок */
     float: left;
     background-color: #eee;
     background-image: linear-gradient(#16013c, #741a5e, #430155, #16013c);
