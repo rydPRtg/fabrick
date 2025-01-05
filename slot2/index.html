@@ -19,15 +19,15 @@
         <div class="window">
             <div class="outer-spacer"></div>
             <div class="outer-col">
-                <div class="col"></div>
+                <div class="col" id="reel1"></div>
             </div>
             <div class="outer-spacer"></div>
             <div class="outer-col">
-                <div class="col"></div>
+                <div class="col" id="reel2"></div>
             </div>
             <div class="outer-spacer"></div>
             <div class="outer-col">
-                <div class="col"></div>
+                <div class="col" id="reel3"></div>
             </div>
             <div class="outer-spacer"></div>
         </div>
@@ -35,14 +35,17 @@
 
     <div class="controls">
         <div class="bet-controls">
-            <input type="number" id="bet-amount" placeholder="Сумма ставки">
-            <div class="quick-bet-buttons">
-                <button onclick="quickBet(1)">1$</button>
-                <button onclick="quickBet(5)">5$</button>
-                <button onclick="quickBet(10)">10$</button>
-            </div>
+            <button onclick="quickBet(-1)">-1$</button>
+            <input type="number" id="bet-amount" placeholder="Сумма ставки" min="0" disabled>
+            <button onclick="quickBet(1)">+1$</button>
+        </div>
+        <div class="quick-bet-buttons">
+            <button onclick="quickBet(1)">1$</button>
+            <button onclick="quickBet(5)">5$</button>
+            <button onclick="quickBet(10)">10$</button>
         </div>
         <input type="button" onclick="spin(this)" class="start-button" value="Spin"/>
+        <button id="exitButton" class="exit-button">Exit</button>
     </div>
 </div>
 
