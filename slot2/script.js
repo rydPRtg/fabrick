@@ -23,6 +23,21 @@ const ICONS = [
     'apple', 'apricot', 'banana', 'big_win', 'cherry', 'grapes', 'lemon', 'lucky_seven', 'orange', 'pear', 'strawberry', 'watermelon',
 ];
 
+const WINNING_COMBINATIONS = {
+    'apple': 2,
+    'apricot': 3,
+    'banana': 4,
+    'cherry': 2,
+    'grapes': 2,
+    'lemon': 3,
+    'orange': 2,
+    'pear': 2,
+    'strawberry': 5,
+    'watermelon': 4,
+    'lucky_seven': 7,
+    'big_win': 10
+};
+
 /**
  * @type {number} The minimum spin time in seconds
  */
@@ -40,6 +55,11 @@ window.addEventListener('DOMContentLoaded', function(event) {
     cols = document.querySelectorAll('.col');
     setInitialItems();
     fetchUserData(); // Fetch initial user data from the server
+
+    // Реализация кнопки выхода
+    document.getElementById("exitButton").addEventListener("click", () => {
+        window.location.href = "../index.html"; // Возврат на главную страницу
+    });
 });
 
 function setInitialItems() {
@@ -94,8 +114,7 @@ function spin(elem) {
     document.getElementById('container').classList.add('spinning');
 
     // set the result delayed
-    // this would be the right place to request the combination from the server
-    window.setTimeout(setResult, BASE_SPINNING_DURATION * 1000 / 2);
+    window.setTimeout(() => setResult(betAmount), BASE_SPINNING_DURATION * 1000 / 2);
 
     window.setTimeout(function () {
         // after the spinning is done, remove the class and enable the button again
@@ -104,29 +123,34 @@ function spin(elem) {
 
         // deduct the bet amount from the balance
         userBalance -= betAmount;
-        updateBalanceOnServer(betAmount);
+        updateBalanceOnServer(betAmount, false);
     }.bind(elem), duration * 1000);
 }
 
 /**
  * Sets the result items at the beginning and the end of the columns
  */
-function setResult() {
+function setResult(betAmount) {
+    let results = [];
     for (let col of cols) {
         // generate 3 random items
-        let results = [
+        let result = [
             getRandomIcon(),
             getRandomIcon(),
             getRandomIcon()
         ];
+        results.push(result);
 
         let icons = col.querySelectorAll('.icon img');
         // replace the first and last three items of each column with the generated items
         for (let x = 0; x < 3; x++) {
-            icons[x].setAttribute('src', 'items/' + results[x] + '.png');
-            icons[(icons.length - 3) + x].setAttribute('src', 'items/' + results[x] + '.png');
+            icons[x].setAttribute('src', 'items/' + result[x] + '.png');
+            icons[(icons.length - 3) + x].setAttribute('src', 'items/' + result[x] + '.png');
         }
     }
+
+    // Check for winning combinations
+    checkWinningCombinations(results, betAmount);
 }
 
 function getRandomIcon() {
@@ -146,6 +170,11 @@ function quickBet(amount) {
     const currentValue = parseInt(betAmountInput.value) || 0;
     const newValue = currentValue + amount;
 
+    if (newValue < 0) {
+        alert('Сумма ставки не может быть отрицательной.');
+        return;
+    }
+
     if (newValue > userBalance) {
         alert('Недостаточно средств на балансе.');
         return;
@@ -155,17 +184,19 @@ function quickBet(amount) {
 }
 
 // Функция для обновления баланса на сервере
-function updateBalanceOnServer(betAmount) {
+function updateBalanceOnServer(betAmount, isWin = false) {
     const telegramId = queryParams.telegram_id; // Use the actual Telegram ID of the user
+    console.log(`Sending request to update balance for user ${telegramId} with bet amount ${betAmount}`);
     fetch(`/api/update_balance/${telegramId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ betAmount: betAmount })
+        body: JSON.stringify({ betAmount: isWin ? betAmount : -betAmount })
     })
     .then(response => response.json())
     .then(data => {
+        console.log('Response from server:', data);
         if (data.success) {
             userBalance = data.newBalance;
             displayUserInfo(queryParams.username, userBalance);
@@ -194,4 +225,63 @@ function fetchUserData() {
         .catch(error => {
             console.error('Error fetching user data:', error);
         });
+}
+
+// Функция для проверки выигрышных комбинаций
+function checkWinningCombinations(results, betAmount) {
+    let totalWinAmount = 0;
+
+    // Check middle row
+    if (results[0][1] === results[1][1] && results[1][1] === results[2][1]) {
+        totalWinAmount += betAmount * WINNING_COMBINATIONS[results[0][1]];
+    }
+
+    // Check diagonals
+    if (results[0][0] === results[1][1] && results[1][1] === results[2][2]) {
+        totalWinAmount += betAmount * WINNING_COMBINATIONS[results[0][0]];
+    }
+    if (results[0][2] === results[1][1] && results[1][1] === results[2][0]) {
+        totalWinAmount += betAmount * WINNING_COMBINATIONS[results[0][2]];
+    }
+
+    // Check for any icon appearing 3 or more times
+    let iconCount = {};
+    results.flat().forEach(icon => {
+        iconCount[icon] = (iconCount[icon] || 0) + 1;
+    });
+
+    for (let icon in iconCount) {
+        if (iconCount[icon] >= 3) {
+            totalWinAmount += betAmount * 1.5; // x1.5 for any 3 or more matches
+        }
+    }
+
+    if (totalWinAmount > 0) {
+        showWinningNotification(totalWinAmount);
+    }
+}
+
+// Функция для отображения уведомления о выигрыше
+function showWinningNotification(winAmount) {
+    userBalance += winAmount;
+    displayUserInfo(queryParams.username, userBalance);
+
+    const notification = document.createElement('div');
+    notification.innerText = `Вы выиграли ${winAmount}!`;
+    notification.style.position = 'fixed';
+    notification.style.top = '10px';
+    notification.style.left = '50%';
+    notification.style.transform = 'translateX(-50%)';
+    notification.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    notification.style.color = 'white';
+    notification.style.padding = '10px 20px';
+    notification.style.borderRadius = '5px';
+    notification.style.zIndex = 1000;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        document.body.removeChild(notification);
+    }, 2000);
+
+    updateBalanceOnServer(winAmount, true);
 }
