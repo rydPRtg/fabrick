@@ -15,7 +15,7 @@ body {
     margin: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Изменяем на flex-start */
     height: 100vh;
     flex-direction: column;
     position: relative;
@@ -50,6 +50,7 @@ body {
     align-items: center;
     justify-content: center;
     margin-top: 60px; /* Adjusted to account for the user-info height */
+    margin-bottom: auto; /* Добавляем автоматический нижний отступ */
 }
 
 /*
@@ -63,10 +64,12 @@ body {
     width: 90%;
     max-width: 400px;
     margin: auto;
+    margin-top: 290px;
     border-radius: 10px; /* Добавим скругленные углы */
 }
 
 .window {
+    transform: translateX(20px); /* Сдвигает барабаны на 20px вправо */
     position: relative;
     overflow: hidden;
     height: calc(3 * var(--item-height));
@@ -192,6 +195,7 @@ body {
     align-items: center;
     width: 100%;
     margin-top: 20px;
+    margin-bottom: 20px; /* Добавляем нижний отступ */
 }
 
 .bet-controls {
@@ -202,21 +206,8 @@ body {
     margin-bottom: 10px;
 }
 
-.bet-controls button {
-    padding: 5px 10px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #fff;
-}
-
-.bet-controls button:hover {
-    background-color: #f0f0f0;
-}
-
-#bet-amount {
-    width: 80px;
+.bet-controls input {
+    width: 60px;
     padding: 5px;
     font-size: 1em;
     border: 1px solid #ccc;
@@ -224,15 +215,12 @@ body {
     text-align: center;
 }
 
-.quick-bet-buttons {
+.adjust-buttons {
     display: flex;
     gap: 5px;
-    width: 100%;
-    justify-content: space-around;
-    margin-bottom: 10px;
 }
 
-.quick-bet-buttons button {
+.adjust-buttons button {
     padding: 5px 10px;
     font-size: 1em;
     border: 1px solid #ccc;
@@ -241,7 +229,7 @@ body {
     background-color: #fff;
 }
 
-.quick-bet-buttons button:hover {
+.adjust-buttons button:hover {
     background-color: #f0f0f0;
 }
 
@@ -250,6 +238,7 @@ body {
     gap: 10px;
     width: 100%;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 .start-button {
@@ -294,16 +283,10 @@ body {
         align-items: center;
     }
 
-    .bet-controls button, #bet-amount {
+    .bet-controls input, .adjust-buttons {
         margin-bottom: 5px;
-    }
-
-    .quick-bet-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .quick-bet-buttons button {
-        margin-bottom: 5px;
+        width: 100%;
+        justify-content: space-between;
+        display: flex;
     }
 }
