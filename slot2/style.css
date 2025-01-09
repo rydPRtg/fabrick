@@ -7,7 +7,7 @@
 }
 
 :root {
-    --item-height: 60px; /* Увеличиваем высоту иконок */
+    --item-height: 70px; /* Увеличиваем высоту иконок */
 }
 
 body {
@@ -64,7 +64,7 @@ body {
     width: 90%;
     max-width: 400px;
     margin: auto;
-    margin-top: 320px;
+    margin-top: 310px;
     border-radius: 0; /* Убираем скругленные углы */
 }
 
@@ -164,7 +164,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 50px; /* Увеличиваем отступ сверху, чтобы сдвинуть ниже */
     margin-bottom: 20px; /* Добавляем нижний отступ */
 }
 
@@ -240,12 +240,29 @@ body {
 }
 
 /*
+ * Style the bet amount input
+ */
+
+.bet-amount {
+    width: 60px; /* Ширина квадрата */
+    height: 60px; /* Высота квадрата */
+    padding: 5px;
+    font-size: 1.2em; /* Увеличиваем размер шрифта для лучшей читаемости */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 auto; /* Центрируем квадрат */
+    margin-left: auto; /* Сдвигаем вправо */
+}
+
+/*
  * Media queries for responsive design
  */
 
-@media (max-width: 600px) {
+@media (max-width: 80px) {
     .container {
         width: 95%;
+
     }
 
     .bet-controls {
