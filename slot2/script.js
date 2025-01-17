@@ -60,6 +60,10 @@ window.addEventListener('DOMContentLoaded', function(event) {
     document.getElementById("exitButton").addEventListener("click", () => {
         window.location.href = "../index.html"; // Возврат на главную страницу
     });
+
+    // Обновление текста бегущей строки
+    updateMarqueeText();
+    setInterval(updateMarqueeText, 10000); // Обновляем текст каждые 10 секунд
 });
 
 function setInitialItems() {
@@ -284,4 +288,11 @@ function showWinningNotification(winAmount) {
     }, 2000);
 
     updateBalanceOnServer(winAmount, true);
+}
+
+// Функция для обновления текста бегущей строки
+function updateMarqueeText() {
+    const playerId = Math.floor(10000 + Math.random() * 90000);
+    const winAmount = Math.floor(3 + Math.random() * 96);
+    document.getElementById('marquee-text').innerText = `Player ${playerId} win ${winAmount}$`;
 }
