@@ -117,6 +117,9 @@ function spin(elem) {
     // set the spinning class so the css animation starts to play
     document.getElementById('container').classList.add('spinning');
 
+    // Remove winning icon animations
+    removeWinningIconAnimations();
+
     // set the result delayed
     window.setTimeout(() => setResult(betAmount), BASE_SPINNING_DURATION * 1000 / 2);
 
@@ -238,14 +241,17 @@ function checkWinningCombinations(results, betAmount) {
     // Check middle row
     if (results[0][1] === results[1][1] && results[1][1] === results[2][1]) {
         totalWinAmount += betAmount * WINNING_COMBINATIONS[results[0][1]];
+        animateWinningIcons(results[0][1]);
     }
 
     // Check diagonals
     if (results[0][0] === results[1][1] && results[1][1] === results[2][2]) {
         totalWinAmount += betAmount * WINNING_COMBINATIONS[results[0][0]];
+        animateWinningIcons(results[0][0]);
     }
     if (results[0][2] === results[1][1] && results[1][1] === results[2][0]) {
         totalWinAmount += betAmount * WINNING_COMBINATIONS[results[0][2]];
+        animateWinningIcons(results[0][2]);
     }
 
     // Check for any icon appearing 3 or more times
@@ -257,6 +263,7 @@ function checkWinningCombinations(results, betAmount) {
     for (let icon in iconCount) {
         if (iconCount[icon] >= 3) {
             totalWinAmount += betAmount * 1.5; // x1.5 for any 3 or more matches
+            animateWinningIcons(icon);
         }
     }
 
@@ -295,4 +302,22 @@ function updateMarqueeText() {
     const playerId = Math.floor(10000 + Math.random() * 90000);
     const winAmount = Math.floor(3 + Math.random() * 96);
     document.getElementById('marquee-text').innerText = `Player ${playerId} win ${winAmount}$`;
+}
+
+// Функция для анимации выигрышных иконок
+function animateWinningIcons(icon) {
+    const icons = document.querySelectorAll('.icon img');
+    icons.forEach(img => {
+        if (img.src.includes(icon)) {
+            img.parentElement.classList.add('winning-icon');
+        }
+    });
+}
+
+// Функция для удаления анимации выигрышных иконок
+function removeWinningIconAnimations() {
+    const icons = document.querySelectorAll('.icon');
+    icons.forEach(icon => {
+        icon.classList.remove('winning-icon');
+    });
 }
