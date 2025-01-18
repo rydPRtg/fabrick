@@ -299,3 +299,20 @@ body {
         transform: translateX(-100%);
     }
 }
+
+/*
+ * Style the winning icon animation
+ */
+
+.winning-icon img {
+    animation: pulse 0.5s ease-in-out 6;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
