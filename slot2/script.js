@@ -278,20 +278,19 @@ function showWinningNotification(winAmount) {
     displayUserInfo(queryParams.username, userBalance);
 
     const notification = document.createElement('div');
+    notification.className = 'winning-notification';
     notification.innerText = `Вы выиграли ${winAmount}!`;
-    notification.style.position = 'fixed';
-    notification.style.top = '10px';
-    notification.style.left = '50%';
-    notification.style.transform = 'translateX(-50%)';
-    notification.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-    notification.style.color = 'white';
-    notification.style.padding = '10px 20px';
-    notification.style.borderRadius = '5px';
-    notification.style.zIndex = 1000;
     document.body.appendChild(notification);
 
     setTimeout(() => {
-        document.body.removeChild(notification);
+        notification.classList.add('show');
+    }, 100);
+
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 500);
     }, 2000);
 
     updateBalanceOnServer(winAmount, true);
