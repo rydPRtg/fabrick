@@ -12,19 +12,33 @@
         <div id="balance"></div>
     </div>
     <div class="container">
-        <div class="exit-button-container" id="exitButton1Container">
-            <img src="images/exit.png" alt="Выйти" class="exit-button-image">
-            <div class="exit-button-label">Слот-барабан</div>
+        <div class="button-row">
+            <div class="exit-button-container" id="exitButton1Container">
+                <img src="images/exit.png" alt="Слот-барабан" class="exit-button-image">
+                <div class="exit-button-label">Слот-барабан</div>
+            </div>
+            <div class="exit-button-container" id="exitButton2Container">
+                <img src="images/exit2.png" alt="Рулетка" class="exit-button-image">
+                <div class="exit-button-label">Рулетка</div>
+            </div>
         </div>
-        <div class="exit-button-container" id="exitButton2Container">
-            <img src="images/exit2.png" alt="Выйти" class="exit-button-image">
-            <div class="exit-button-label">Рулетка</div>
+        <div class="button-row">
+            <div class="exit-button-container" id="exitButton3Container">
+                <img src="images/exit3.png" alt="Авиатор" class="exit-button-image">
+                <div class="exit-button-label">Авиатор</div>
+            </div>
         </div>
-        <div class="exit-button-container" id="exitButton3Container">
-            <img src="images/exit3.png" alt="Выйти" class="exit-button-image">
-            <div class="exit-button-label">Авиатор</div>
+    </div>
+    <div class="footer">
+        <button class="footer-button" id="profileButton">Профиль</button>
+        <button class="footer-button" id="menuButton">Меню</button>
+        <button class="footer-button" id="promotionsButton">Акции</button>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <iframe id="profileFrame" src="prolil/profil.html" frameborder="0"></iframe>
         </div>
-        <button class="exit-button" id="exitButton4">Выйти</button>
     </div>
     <script src="script.js"></script>
 </body>
