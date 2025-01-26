@@ -31,6 +31,19 @@ document.getElementById("exitButton3Container").addEventListener("click", () => 
     window.location.href = `aviator/index.html?username=${queryParams.username}&balance=${queryParams.balance}&telegram_id=${queryParams.telegram_id}`;
 });
 
-document.getElementById("exitButton4").addEventListener("click", () => {
-    window.location.href = `slot/slot.html?username=${queryParams.username}&balance=${queryParams.balance}&telegram_id=${queryParams.telegram_id}`;
+// Открытие модального окна при нажатии на кнопку "Профиль"
+document.getElementById("profileButton").addEventListener("click", () => {
+    document.getElementById("modal").style.display = "block";
+});
+
+// Закрытие модального окна при нажатии на крестик
+document.getElementsByClassName("close-button")[0].addEventListener("click", () => {
+    document.getElementById("modal").style.display = "none";
+});
+
+// Закрытие модального окна при нажатии вне его
+window.addEventListener("click", (event) => {
+    if (event.target == document.getElementById("modal")) {
+        document.getElementById("modal").style.display = "none";
+    }
 });
