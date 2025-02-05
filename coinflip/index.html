@@ -1,20 +1,31 @@
-<div class='coin-flip'>
-  <!-- The tail starts out hidden; we don't want to wait until CSS rule evaluation to hide this image -->
-  <div id='coin-tails' style='display:none'>
-    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/US_One_Cent_Rev.png/240px-US_One_Cent_Rev.png'>
-  </div>
-  <div id='coin-heads'>
-    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/US_One_Cent_Obv.png/240px-US_One_Cent_Obv.png'>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coinflip Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Coinflip Game</h1>
+        <p class="info">Choose "Heads" or "Tails" and press Spin!</p>
 
-<div id='controls'>
-    Balance <div id='div-balance'></div>
-  <div id='buttons'>
-    <button id='btn-heads' onclick=flip('heads')>Heads</button>
-    <button id='btn-tails' onclick=flip('tails')>Tails</button>
-  </div>
-  <div id='div-result'></div>
-</div>
+        <div class="choices">
+            <button class="choice" id="heads">Heads</button>
+            <button class="choice" id="tails">Tails</button>
+        </div>
 
-<div id='div-debuginfo'></div>
+        <div class="coin-wrapper">
+            <div class="coin" id="coin"></div>
+        </div>
+
+        <div class="controls">
+            <button id="spin" class="spin" disabled>Spin</button>
+            <p id="outcome"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

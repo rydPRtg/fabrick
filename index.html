@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="slot/slot.css">
 </head>
 <body>
     <div class="user-info">
@@ -13,57 +12,34 @@
         <div id="balance"></div>
     </div>
     <div class="container">
-        <div class="exit-button-container" id="exitButton1Container">
-            <img src="images/exit.png" alt="Выйти" class="exit-button-image">
-            <div class="exit-button-label">Слот-барабан</div>
+        <div class="button-row">
+            <div class="exit-button-container" id="exitButton1Container">
+                <img src="images/exit.png" alt="Слот-барабан" class="exit-button-image">
+                <div class="exit-button-label">Слот-барабан</div>
+            </div>
+            <div class="exit-button-container" id="exitButton2Container">
+                <img src="images/exit2.png" alt="Мины" class="exit-button-image">
+                <div class="exit-button-label">Мины</div>
+            </div>
         </div>
-        <div class="exit-button-container" id="exitButton2Container">
-            <img src="images/exit2.png" alt="Выйти" class="exit-button-image">
-            <div class="exit-button-label">Рулетка</div>
+        <div class="button-row">
+            <div class="exit-button-container" id="exitButton3Container">
+                <img src="images/exit3.png" alt="Авиатор" class="exit-button-image">
+                <div class="exit-button-label">Авиатор</div>
+            </div>
         </div>
-        <div class="exit-button-container" id="exitButton3Container">
-            <img src="images/exit3.png" alt="Выйти" class="exit-button-image">
-            <div class="exit-button-label">Авиатор</div>
-        </div>
-        <button class="exit-button" id="exitButton4">Выйти</button>
     </div>
-    <script src="slot/slot.js"></script>
-    <script>
-        // Функция для получения параметров из URL
-        function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            return {
-                username: params.get('username'),
-                balance: params.get('balance')
-            };
-        }
-
-        // Функция для отображения информации о пользователе
-        function displayUserInfo(username, balance) {
-            document.getElementById('username').innerText = `Никнейм: ${username}`;
-            document.getElementById('balance').innerText = `Баланс: ${balance}`;
-        }
-
-        // Получаем параметры из URL и отображаем информацию о пользователе
-        const queryParams = getQueryParams();
-        displayUserInfo(queryParams.username, queryParams.balance);
-
-        // Реализация кнопок выхода
-        document.getElementById("exitButton1Container").addEventListener("click", () => {
-            window.location.href = "slot2/slot.html"; // Возврат на главную страницу
-        });
-
-        document.getElementById("exitButton2Container").addEventListener("click", () => {
-            window.location.href = "ruletka/index.html"; // Возврат на главную страницу
-        });
-
-        document.getElementById("exitButton3Container").addEventListener("click", () => {
-            window.location.href = "aviator/index.html"; // Возврат на главную страницу
-        });
-
-        document.getElementById("exitButton4").addEventListener("click", () => {
-            window.location.href = "slot/slot.html"; // Возврат на главную страницу
-        });
-    </script>
+    <div class="footer">
+        <button class="footer-button" id="profileButton">Профиль</button>
+        <button class="footer-button" id="menuButton">Меню</button>
+        <button class="footer-button" id="promotionsButton">Акции</button>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <iframe id="profileFrame" src="prolil/profil.html" frameborder="0"></iframe>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,10 +1,18 @@
+# casi/database/db.py
 from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
+import os
 
 # Создание базы данных SQLite
 DATABASE_URL = "sqlite:///database/users.db"
-engine = create_engine(DATABASE_URL)
+
+# Проверка существования директории и файла базы данных
+database_dir = os.path.dirname(DATABASE_URL.replace("sqlite:///", ""))
+if not os.path.exists(database_dir):
+    os.makedirs(database_dir)
+
+# Увеличение лимита пула соединений
+engine = create_engine(DATABASE_URL, pool_size=20, max_overflow=0)
 Base = declarative_base()
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

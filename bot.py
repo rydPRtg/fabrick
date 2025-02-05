@@ -1,9 +1,9 @@
 import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import WebAppInfo, InlineKeyboardMarkup, InlineKeyboardButton
-from aiogram.dispatcher.filters import CommandStart, Command
+from aiogram.dispatcher.filters import CommandStart
 from config import BOT_TOKEN, WEBAPP_URL
-from database.db import SessionLocal, get_user, create_user, update_balance
+from database.db import SessionLocal, get_user, create_user
 from urllib.parse import quote
 
 # Инициализация бота и диспетчера
@@ -23,7 +23,7 @@ async def start_command(message: types.Message):
     session.close()
 
     # Формируем URL с параметрами и экранируем его
-    webapp_url_with_params = f"{WEBAPP_URL}?username={quote(username)}&balance={user.balance}"
+    webapp_url_with_params = f"{WEBAPP_URL}?username={quote(username)}&balance={user.balance}&telegram_id={telegram_id}"
 
     # Создаем обычную клавиатуру с кнопкой WebApp
     reply_keyboard = types.ReplyKeyboardMarkup(
@@ -49,16 +49,6 @@ async def start_command(message: types.Message):
         "Или вы можете нажать эту кнопку:",
         reply_markup=inline_keyboard
     )
-
-# Пример команды для обновления баланса
-@dp.message_handler(Command("update_balance"))
-async def update_balance_command(message: types.Message):
-    telegram_id = message.from_user.id
-    session = SessionLocal()
-    update_balance(session, telegram_id, 100)  # Пример увеличения баланса на 100
-    user = get_user(session, telegram_id)
-    session.close()
-    await message.answer(f"Ваш новый баланс: {user.balance}")
 
 # Главная асинхронная функция
 async def main():
