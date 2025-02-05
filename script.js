@@ -31,6 +31,18 @@ document.getElementById("exitButton3Container").addEventListener("click", () => 
     window.location.href = `aviator/index.html?username=${queryParams.username}&balance=${queryParams.balance}&telegram_id=${queryParams.telegram_id}`;
 });
 
+document.getElementById("exitButton4Container").addEventListener("click", () => {
+    window.location.href = `ochko/index.html?username=${queryParams.username}&balance=${queryParams.balance}&telegram_id=${queryParams.telegram_id}`;
+});
+
+document.getElementById("exitButton5Container").addEventListener("click", () => {
+    window.location.href = `newgame5/index.html?username=${queryParams.username}&balance=${queryParams.balance}&telegram_id=${queryParams.telegram_id}`;
+});
+
+document.getElementById("exitButton6Container").addEventListener("click", () => {
+    window.location.href = `newgame6/index.html?username=${queryParams.username}&balance=${queryParams.balance}&telegram_id=${queryParams.telegram_id}`;
+});
+
 // Открытие модального окна при нажатии на кнопку "Профиль"
 document.getElementById("profileButton").addEventListener("click", () => {
     document.getElementById("modal").style.display = "block";
