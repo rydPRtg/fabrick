@@ -12,7 +12,7 @@ const gridSize = 5; // Размер сетки (5x5)
 let mines = [];
 let score = 0;
 let multiplier = 1.0; // Начальный множитель
-let mineChance = 0.3; // Шанс на мину (20%)
+let mineChance = 0.2; // Шанс на мину (20%)
 let gameStarted = false;
 let userBalance = 0;
 let betAmount = 0;
@@ -27,8 +27,8 @@ function getQueryParams() {
 }
 
 // Функция для отображения информации о пользователе
-function displayUserInfo(nickname, balance) {
-    document.getElementById('username').innerText = `Никнейм: ${nickname}`;
+function displayUserInfo(username, balance) {
+    document.getElementById('username').innerText = `Никнейм: ${username}`;
     document.getElementById('balance').innerText = `Баланс: ${balance}`;
     userBalance = balance;
 }
@@ -37,18 +37,27 @@ function displayUserInfo(nickname, balance) {
 const queryParams = getQueryParams();
 const telegramId = queryParams.telegram_id;
 
+// Временные данные пользователя для тестирования
+const tempUserData = {
+    username: 'TestUser',
+    balance: 1000
+};
+
 // Функция для получения данных пользователя с сервера
 async function fetchUserData() {
     try {
         const response = await fetch(`/api/user/${telegramId}`);
         const data = await response.json();
-        if (data.nickname && data.balance) {
-            displayUserInfo(data.nickname, data.balance);
+        console.log('User data:', data); // Добавьте эту строку для проверки
+        if (data.username && data.balance) {
+            displayUserInfo(data.username, data.balance);
         } else {
             console.error('Invalid data format:', data);
         }
     } catch (error) {
         console.error('Error fetching user data:', error);
+        // Используем временные данные, если API недоступно
+        displayUserInfo(tempUserData.username, tempUserData.balance);
     }
 }
 
@@ -166,31 +175,13 @@ startButton.addEventListener('click', () => {
 });
 
 // Обработка клика по кнопке "Stop"
-stopButton.addEventListener('click', async () => {
+stopButton.addEventListener('click', () => {
     if (!gameStarted) return;
 
     const winAmount = Math.floor(betAmount * multiplier);
     userBalance += winAmount;
-
-    try {
-        const response = await fetch(`/api/update_balance/${telegramId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ betAmount: winAmount })
-        });
-        const data = await response.json();
-        if (data.success) {
-            displayUserInfo(queryParams.username, data.newBalance);
-            showNotification(`Вы выиграли ${winAmount}!`);
-        } else {
-            console.error('Error updating balance:', data);
-        }
-    } catch (error) {
-        console.error('Error updating balance:', error);
-    }
-
+    displayUserInfo(queryParams.username, userBalance);
+    showNotification(`Вы выиграли ${winAmount}!`);
     gameStarted = false;
 });
 
