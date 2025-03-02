@@ -68,7 +68,7 @@ payWithStarsButton.addEventListener('click', () => {
         depositAmountInput.value = '';
     } else {
         // Если не в Web App, перенаправляем к боту с параметрами
-        const botUsername = 'YourBotUsername'; // Замените на имя вашего бота, например, @MyPaymentBot
+        const botUsername = '@raidwar_bot'; // Замените на имя вашего бота, например, @MyPaymentBot
         window.location.href = `https://t.me/${botUsername}?start=deposit_${starsAmount}_${queryParams.telegram_id}`;
     }
 });

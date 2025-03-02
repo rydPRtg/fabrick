@@ -1,8 +1,8 @@
 import asyncio
+import json
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import Message, LabeledPrice, PreCheckoutQuery, ContentType
 from aiogram.filters import CommandStart
-from aiogram.methods import SendInvoice
 
 TOKEN = '7210744291:AAGDpAr7dd5g_XdyZsdCvzTNGJeXP7bU0qQ'
 
@@ -35,7 +35,6 @@ async def cmd_start(message: Message):
 # Обработчик данных из Web App
 @dp.message(content_types=ContentType.WEB_APP_DATA)
 async def handle_web_app_data(message: types.Message):
-    import json
     data = json.loads(message.web_app_data.data)
     if data.get('action') == 'deposit':
         stars_amount = int(data['amount'])
@@ -62,7 +61,6 @@ async def successful_payment(message: types.Message):
     stars_amount = int(message.successful_payment.total_amount)
     tfs_amount = stars_amount // 2
     await message.answer(f"Оплата на {stars_amount} Stars прошла успешно! Ваш баланс пополнен на {tfs_amount} TFS.")
-    # Здесь можно добавить логику обновления баланса в базе данных через API
 
 # Основная функция для запуска бота
 async def main():
