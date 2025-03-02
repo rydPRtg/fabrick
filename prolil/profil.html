@@ -22,12 +22,13 @@
         <button class="action-button" id="withdrawButton">Вывод</button>
     </div>
 
-    <!-- Modal for confirming Stars payment -->
-    <div id="paymentModal" class="modal">
+    <!-- Modal for deposit -->
+    <div id="depositModal" class="modal">
         <div class="modal-content">
-            <span class="close-button">×</span>
-            <p>Вы хотите пополнить баланс на <span id="starsAmount"></span> Stars за MemeFi Coin?</p>
-            <button class="action-button" id="confirmPayment">Подтвердить</button>
+            <span class="close-button">&times;</span>
+            <p>Введите сумму для пополнения (в Stars):</p>
+            <input type="number" id="depositAmount" placeholder="Сумма">
+            <button class="action-button" id="confirmDeposit">Пополнить</button>
         </div>
     </div>
 
