@@ -57,23 +57,18 @@ payWithStarsButton.addEventListener('click', () => {
 
     // Проверка, запущено ли приложение в Telegram Web App
     if (window.Telegram && window.Telegram.WebApp) {
-        // Инициализация Telegram Web App
         const webApp = window.Telegram.WebApp;
-
-        // Отправка запроса на оплату через Telegram Stars
-        webApp.openInvoice(`https://t.me/$payment?amount=${starsAmount}`, (status) => {
-            if (status === 'paid') {
-                alert(`Оплата на ${starsAmount} Stars успешно завершена! Баланс пополнен на ${amount} TFS.`);
-                // Здесь можно добавить логику обновления баланса через API
-                depositModal.style.display = 'none';
-                depositAmountInput.value = '';
-            } else if (status === 'cancelled') {
-                alert('Оплата была отменена.');
-            } else if (status === 'failed') {
-                alert('Ошибка при оплате. Попробуйте снова.');
-            }
-        });
+        // Отправляем данные боту через WebApp
+        webApp.sendData(JSON.stringify({
+            action: 'deposit',
+            amount: starsAmount,
+            telegram_id: queryParams.telegram_id
+        }));
+        depositModal.style.display = 'none';
+        depositAmountInput.value = '';
     } else {
-        alert('Этот функционал доступен только в Telegram Web App.');
+        // Если не в Web App, перенаправляем к боту с параметрами
+        const botUsername = 'YourBotUsername'; // Замените на имя вашего бота, например, @MyPaymentBot
+        window.location.href = `https://t.me/${botUsername}?start=deposit_${starsAmount}_${queryParams.telegram_id}`;
     }
 });
