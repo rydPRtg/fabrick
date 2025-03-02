@@ -33,5 +33,13 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Проверка инициализации Telegram WebApp
+        if (!window.Telegram?.WebApp) {
+            alert('Пожалуйста, откройте это приложение через Telegram');
+        } else {
+            window.Telegram.WebApp.ready();
+        }
+    </script>
 </body>
 </html>
